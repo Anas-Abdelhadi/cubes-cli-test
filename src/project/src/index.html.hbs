@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>{{title}}</title>
+    <!--Polyfills-->
+    <script>
+      __runtime_public_path__ = {
+        {{#each dependencies}}
+        '{{this}}': '/packages/{{this}}/',
+        {{/each}}
+        Vue: '/packages/vue/',
+        VueRouter: '/packages/vue-router/'
+      }
+      if (typeof Promise === 'undefined') document.write('<script src="promise.min.js"><\/script>')
+      if (typeof fetch === 'undefined') document.write('<script src="fetch.umd.js"><\/script>')
+    </script>
+
+    <script type="systemjs-importmap" src="/packages.json"></script>
+    <script type="text/javascript" src="/loader.min.js"></script>
+    <style>
+      .top-bar-brand img {
+        width: auto;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div data-{{name}}-app></div>
+    <script>
+      var context = window
+      System.ready(['Vue', 'VueRouter'],[{{dependencies}}]], [], function () {}, context)
+    </script>
+    <script type="text/javascript">
+      window.configure = function () {
+        return {
+          secure: true,
+          currencySymbol: { ar: 'د.إ', en: 'AED' },
+          branding: {
+            //style: 'moei-map',
+            //title: { en: 'The Department of Municipalities and Transport', ar: 'دائرة البلديات والنقل' }
+            // logo: 'public/injazi-dark.svg', // {0} style
+            // bg: 'public/bg-{0}.jpg', // {0} lang, {1} theme, {2} style
+            // auth: {
+            //   appLogo: 'public/{2}-logo-{1}.svg', // {0} lang, {1} theme, {2} style
+            //   clientLogo: 'public/injazi-light.svg'
+            // }
+          },
+          themes: [
+            {
+              name: 'light',
+              ui: {
+                icon: 'sun'
+              }
+            }
+          ],
+          cultures: [
+            { id: 9, lang: 'en', locale: 'en-US', lcid: 1033, dir: 'ltr' },
+            { id: 1, lang: 'ar', locale: 'ar-JO', lcid: 11265, dir: 'rtl' }
+          ],
+          currencySymbol: { ar: 'د.إ', en: 'AED' },
+          social: {
+            facebook: 'https://www.facebook.com/sharer/sharer.php',
+            twitter: 'https://www.twitter.com/share',
+            linkedin: 'https://linkedin.com/shareArticle'
+          },
+          network: {
+            shared: {
+              baseURL: 'https://cubes.solutions/CubesMOEIDB',
+              api: '/api/v2',
+              maxCachedRequests: 10
+            },
+            objectsBrowser: {
+              baseURL: 'https://cubes.solutions/CubesMOEIDB',
+              api: '/api'
+            },
+            foldersBrowser: {
+              baseURL: 'https://cubes.solutions/CubesMOEIDB',
+              api: '/api'
+            },
+            security: {
+              baseURL: 'https://cubes.solutions/CubesMOEIDB',
+              api: '/api/v2'
+            },
+            auth: {
+              mode: 'cubes',
+              pkceURL: 'https://cubes.solutions/CubesStorylineWebAppSTG',
+              baseURL: 'https://cubes.solutions/CubesMOEIDB',
+              authRelayUri: 'https://cubes.solutions/CubesMOEICustom.UI/Content/packages/cubes-ui@2.1.2/auth-relay.html',
+              api: '/api',
+              clientId: 'cubes',
+              tokenEndpoint: '/Auth/Token',
+              logoutEndpoint: '/LogoutPage.aspx',
+              userInfoEndpoint: '/Auth/User',
+              authorizeEndpoint: '/Auth/Authorize',
+              externalLoginsEndpoint: '/Account/ExternalLogins',
+              profilePictureEndpoint: '/user/profile/picture'
+            }
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
