@@ -35,7 +35,7 @@ module.exports = env =>
       },
       static: [
         { directory: path.join(__dirname, 'dist') },
-        {{#each dependencies}}
+        {{#each data.dependencies}}
         { directory: path.join(__dirname, 'node_modules/{{this}}/dist'), publicPath: '/packages/{{this}}' },
         {{/each}}
         { directory: path.join(__dirname, 'node_modules/vue/dist'), publicPath: '/packages/vue' },

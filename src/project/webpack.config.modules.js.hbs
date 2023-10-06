@@ -3,11 +3,11 @@ const modules = []
 // for node_modules set path without ./node_modules prefix
 const externals = {
   main: {
-    id: '{{name}}',
+    id: '{{data.name}}',
     path: '.',
-    main: '{{name}}.js'
+    main: '{{data.name}}.js'
   },
- {{#each dependencies}}
+ {{#each data.dependencies}}
    ['{{this}}']: {
     id: '{{this}}',
     path: '.',

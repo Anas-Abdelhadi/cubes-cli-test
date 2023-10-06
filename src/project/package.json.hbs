@@ -1,8 +1,8 @@
 {
-  "name": "@tsmesolutions/{{name}}",
+  "name": "@tsmesolutions/{{data.name}}",
   "version": "0.0.0",
-  "description": "{{description}}",
-  "main": "dist/{{name}}.js",
+  "description": "{{data.description}}",
+  "main": "dist/{{data.name}}.js",
   "types": "dist/types/index.d.ts",
   "files": [
     "dist/**/*"
@@ -15,7 +15,7 @@
     "build:prod": "npm run clean  && webpack --config webpack.prod.js --env vars=cubes.prod --env  --mode production --progress --profile && tsc ",
     "release": "npm run build:prod && rimraf --glob dist/**/*LICENSE.txt dist/**/*js.map dist/dev dist/types "
   },
-  "repository": "https://github.com/TSMESolutions/{{name}}",
+  "repository": "https://github.com/TSMESolutions/{{data.name}}",
   "author": "TSME",
   "license": "UNLICENSED",
   "devDependencies": {
@@ -43,7 +43,7 @@
     "core-js": "^3.33.0",
     "css-loader": "^6.8.1",
     "css-minimizer-webpack-plugin": "^5.0.1",
-    {{#each dependencies}}
+    {{#each data.dependencies}}
     "{{this}}": "npm:@tsmesolutions/{{this}}@latest",
     {{/each}}
     "dotenv-webpack": "^8.0.1",
