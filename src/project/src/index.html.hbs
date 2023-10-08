@@ -11,6 +11,7 @@
     <!--Polyfills-->
     <script>
       __runtime_public_path__ = {
+        '{{data.name}}':'/',
         {{#each data.dependencies}}
         '{{this}}': '/packages/{{this}}/',
         {{/each}}
@@ -34,7 +35,7 @@
     <div data-{{data.name}}-app></div>
     <script>
       var context = window
-      System.ready(['Vue', 'VueRouter'],[{{data.dependencies}}], [], function () {}, context)
+      System.ready(['Vue', 'VueRouter'],[{{loop data.dependencies}},'{{data.name}}'], [], function () {}, context)
     </script>
     <script type="text/javascript">
       window.configure = function () {
@@ -52,6 +53,12 @@
             // }
           },
           themes: [
+            {
+              name: 'dark',
+              ui: {
+                icon: 'moon'
+              }
+            },
             {
               name: 'light',
               ui: {
