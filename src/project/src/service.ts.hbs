@@ -9,14 +9,14 @@ const services = require.context(
 )
 
 import { serviceMap as cubesServiceMap } from 'cubes-app'
-{{#if data.dependencies.includes('cubes-dashboard')}}
+{{#if (hasDependency data.dependencies 'cubes-dashboard')}}
 import { serviceMap as dashboardServiceMap  } from 'cubes-dashboard'
 import { repositoryMap as dashboardRepositoryMap } from 'cubes-dashboard'
 {{/if}}
 
 const serviceMap = {
   ...cubesServiceMap,
-  {{#if data.dependencies.includes('cubes-dashboard')}}
+  {{#if (hasDependency data.dependencies 'cubes-dashboard')}}
   ...dashboardServiceMap,
   {{/if}}
   //todo: add your application service keys/config here
@@ -24,7 +24,7 @@ const serviceMap = {
  
 }
 const repositoryMap = {  
-  {{#if data.dependencies.includes('cubes-dashboard')}}
+  {{#if (hasDependency data.dependencies 'cubes-dashboard')}}
   ...dashboardRepositoryMap,
   {{/if}}
   //todo: add your application repository keys/config here

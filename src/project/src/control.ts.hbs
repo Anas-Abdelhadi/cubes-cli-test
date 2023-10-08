@@ -1,7 +1,7 @@
 import { THashMap } from 'cubes'
 import { TResult, modalMap as builtInModalMap } from 'cubes-ui'
 import { repositoryMap, serviceMap, services } from './service'
-{{#if data.dependencies.includes('cubes-dashboard')}}
+{{#if (hasDependency data.dependencies 'cubes-dashboard')}}
 import {cubesDashboardI18nFiles, install ,services as cubesDashboardServices } from 'cubes-dashboard'
 {{/if}}
 import { AppCoreBase } from 'cubes-app'
@@ -36,7 +36,7 @@ class App extends AppCoreBase {
      //@ts-ignore
      this.version = __version__
   }
-  {{#if data.dependencies.includes('cubes-dashboard')}}
+  {{#if (hasDependency data.dependencies 'cubes-dashboard')}}
   install(app: TApp<Element>) {
     install(app)
   }
@@ -54,10 +54,10 @@ class App extends AppCoreBase {
     return { ...serviceMap, ...repositoryMap }
   }
   getServices() {
-    return [{{#if data.dependencies.includes('cubes-dashboard')}}cubesDashboardServices, {{/if}}services]
+    return [{{#if (hasDependency data.dependencies 'cubes-dashboard')}}cubesDashboardServices, {{/if}}services]
   }
   geti18n() {
-    return [{{#if data.dependencies.includes('cubes-dashboard')}}cubesDashboardI18nFiles, {{/if}}i18nFiles]
+    return [{{#if (hasDependency data.dependencies 'cubes-dashboard')}}cubesDashboardI18nFiles, {{/if}}i18nFiles]
   }
   getSiteMapRoutes() {
     return routes
