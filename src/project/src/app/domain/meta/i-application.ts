@@ -1,4 +1,4 @@
 import { TApplication as TApp } from 'cubes-ui'
 
-type TDashboardApplication = TApp & { someExtraProp: number }
-export type { TDashboardApplication }
+type TApplication = TApp & { someExtraProp: number }
+export type { TApplication }

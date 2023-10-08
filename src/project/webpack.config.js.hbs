@@ -101,7 +101,7 @@ module.exports = env => ({
     })
   ],
   externals: {
-    {{#each dependencies}}
+    {{#each data.dependencies}}
     '{{this}}': '{{this}}',
     {{/each}}
     vue: 'window Vue',

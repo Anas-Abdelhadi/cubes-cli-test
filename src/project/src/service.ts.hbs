@@ -1,0 +1,36 @@
+//@ts-nocheck
+const services = require.context(
+  // Look for files in the current directory
+  '.',
+  //  look in subdirectories
+  true,
+  // Only include .ts files
+  /\.(service|repo)\.ts$/
+)
+
+import { serviceMap as cubesServiceMap } from 'cubes-app'
+{{#if data.dependencies.includes('cubes-dashboard')}}
+import { serviceMap as dashboardServiceMap  } from 'cubes-dashboard'
+import { repositoryMap as dashboardRepositoryMap } from 'cubes-dashboard'
+{{/if}}
+
+const serviceMap = {
+  ...cubesServiceMap,
+  {{#if data.dependencies.includes('cubes-dashboard')}}
+  ...dashboardServiceMap,
+  {{/if}}
+  //todo: add your application service keys/config here
+  //MyService: { key: 'MyService', config: {} },
+ 
+}
+const repositoryMap = {  
+  {{#if data.dependencies.includes('cubes-dashboard')}}
+  ...dashboardRepositoryMap,
+  {{/if}}
+  //todo: add your application repository keys/config here
+  //MyRepository: { key: 'MyRepository', config: {} },
+  
+}
+type {{data.pascalName}}ServiceMap = typeof serviceMap
+export { services, serviceMap, repositoryMap }
+export type { {{data.pascalName}}ServiceMap }

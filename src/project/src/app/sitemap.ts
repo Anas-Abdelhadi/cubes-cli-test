@@ -16,6 +16,7 @@ const indexRoute = {
 const routes = [
   indexRoute,
   ...sessionRoutes,
+  //todo: add your routes here..
   {
     path: '/:pathMatch(.*)*',
     redirect: '/'

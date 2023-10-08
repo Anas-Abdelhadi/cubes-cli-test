@@ -1,12 +1,16 @@
-import { THashMap } from 'cubes';
-import { TResult, modalMap as builtInModalMap } from 'cubes-ui';
-import { repositoryMap, serviceMap, services } from './service';
+import { THashMap } from 'cubes'
+import { TResult, modalMap as builtInModalMap } from 'cubes-ui'
+import { repositoryMap, serviceMap, services } from './service'
+{{#if data.dependencies.includes('cubes-dashboard')}}
+import {cubesDashboardI18nFiles, install ,services as cubesDashboardServices } from 'cubes-dashboard'
+{{/if}}
+import { AppCoreBase } from 'cubes-app'
+import Application from './app/App.vue'
+import { clientMaps } from './proxy'
+import { i18nFiles } from './i18n'
+import routes from './app/sitemap'
 
-import { AppCoreBase } from 'cubes-app';
-import Application from './app/App.vue';
-import { clientMaps } from './proxy';
-import { i18nFiles } from './i18n';
-import routes from './app/sitemap';
+
 
 const modalMap = {
   ...builtInModalMap
@@ -32,7 +36,11 @@ class App extends AppCoreBase {
      //@ts-ignore
      this.version = __version__
   }
-
+  {{#if data.dependencies.includes('cubes-dashboard')}}
+  install(app: TApp<Element>) {
+    install(app)
+  }
+  {{/if}}
   setupActiveControl() {
     return this
   }
@@ -46,10 +54,10 @@ class App extends AppCoreBase {
     return { ...serviceMap, ...repositoryMap }
   }
   getServices() {
-    return [services]
+    return [{{#if data.dependencies.includes('cubes-dashboard')}}cubesDashboardServices, {{/if}}services]
   }
   geti18n() {
-    return [i18nFiles]
+    return [{{#if data.dependencies.includes('cubes-dashboard')}}cubesDashboardI18nFiles, {{/if}}i18nFiles]
   }
   getSiteMapRoutes() {
     return routes

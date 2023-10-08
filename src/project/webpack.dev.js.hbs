@@ -9,7 +9,7 @@ require('./webpack.config.modules').init(false)
 module.exports = env =>
   merge(config(env), {
     entry: {
-      ['{{name}}']: './src/main.ts'
+      ['{{data.name}}']: './src/main.ts'
     },
     output: {
       pathinfo: false,

@@ -1,0 +1,29 @@
+//@ts-nocheck
+
+import {  i18nMap as cubesAppI18nMap } from 'cubes-app'
+import {  i18nMap as cubesUiI18nMap } from 'cubes-ui'
+{{#if data.dependencies.includes('cubes-dashboard')}}
+import {i18nMap as cubesDashboardI18nMap } from 'cubes-dashboard'
+{{/if}}
+import type { Ti18n as TCubesAppI18n  } from 'cubes-app'
+import type { Ti18n as TCubesUII18n  } from 'cubes-ui'
+{{#if data.dependencies.includes('cubes-dashboard')}}
+import type {Ti18n as TCubesDashboardI18n } from 'cubes-dashboard'
+{{/if}}
+const i18nFiles = require.context('.', true, /\.i18n.ts$/)
+export { i18nFiles }
+
+const i18nMapApp = {
+  //todo: fill up your i18nmaps here..
+}
+
+export const i18nMap = {
+  ...cubesUiI18nMap,
+  ...cubesAppI18nMap,
+  {{#if data.dependencies.includes('cubes-dashboard')}}
+  ...cubesDashboardI18nMap,
+  {{/if}}
+  ...i18nMapApp,
+}
+
+export type Ti18n = typeof i18nMapApp & TCubesAppI18n & TCubesUII18n{{#if data.dependencies.includes('cubes-dashboard')}} & TCubesDashboardI18n{{/if}}

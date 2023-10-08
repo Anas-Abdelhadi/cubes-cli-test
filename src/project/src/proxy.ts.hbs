@@ -1,0 +1,20 @@
+import { clientMaps as cubesAppClientMaps } from 'cubes-app'
+import { clientMaps as cubesUiClientMaps } from 'cubes-ui'
+{{#if data.dependencies.includes('cubes-dashboard')}}
+import { clientMaps as cubesDashboardClientMaps } from 'cubes-dashboard'
+{{/if}}
+//todo: import your app proxy imports here..
+// import { myProxy } from './app/repository/proxy/myProxy.proxy'
+//
+const clientMaps = {
+  ...cubesUiClientMaps,
+  ...cubesAppClientMaps,
+  {{#if data.dependencies.includes('cubes-dashboard')}}
+  ...cubesDashboardClientMaps,
+  {{/if}}
+  //todo:export your proxies here..
+  //myProxy,
+  
+}
+export { clientMaps }
+export type TClients = typeof clientMaps

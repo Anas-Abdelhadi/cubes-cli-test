@@ -1,13 +1,13 @@
 import { Application as App } from 'cubes-ui'
-import { TDashboardApplication } from '../meta/i-application'
+import { TApplication } from '../meta/i-application'
 
-class DashboardApplication extends App implements TDashboardApplication {
+class Application extends App implements TApplication {
   public someExtraProp!: number
 
-  public deserialize({ someExtraProp = 100, ...rest }: Partial<TDashboardApplication> = {}): void {
+  public deserialize({ /*someExtraProp = 100,*/ ...rest }: Partial<TApplication> = {}): void {
     super.deserialize(rest)
-    this.someExtraProp = someExtraProp
+    //this.someExtraProp = someExtraProp
   }
 }
  
-export { DashboardApplication }
+export { Application }
