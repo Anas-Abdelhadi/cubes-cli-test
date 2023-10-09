@@ -1,0 +1,25 @@
+import { Inject, Service } from 'cubes'
+import type { THashMap, TUID } from 'cubes'
+import type { TProxyResult} from 'cubes-ui'
+import { IoCLevelsEnum } from '@/{{data.name}}'
+ 
+import type{ I{{data.pascalName}}Repository } from '@/app/repository/{{data.name}}/meta/index.ts'
+import type{ T{{data.pascalName}}Client } from '@/app/repository/proxy/{{data.name}}.proxy'
+ 
+import { serviceMap, repositoryMap } from '@/service'
+
+@Service(IoCLevelsEnum.DEV_2, repositoryMap.{{data.pascalName}}Repository.key)
+class {{data.pascalName}}Repository<T extends THashMap<Function> = T{{data.pascalName}}Client> implements I{{data.pascalName}}Repository<T> {
+  
+  public readonly id: TUID = `${repositoryMap.{{data.pascalName}}Repository.key}@Repository`
+  @Inject(serviceMap.NetworkManager.key) networkManager!: INetworkManager<T>
+  
+  get clientMapsKey(): keyof TClients {
+    throw new Error('clientMapsKey is required')
+  }
+ 
+  //todo: provide implementation for your I{{data.pascalName}}Repository interface
+
+}
+
+export default HistoricalPIService

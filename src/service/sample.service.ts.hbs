@@ -1,0 +1,19 @@
+import { Inject, Service } from 'cubes'
+import { IoCLevelsEnum } from '@/{{data.name}}'
+{{#if data.withRepo}}
+import type{ I{{data.pascalName}}Repository } from '@/app/repository/{{data.name}}/meta/index.ts'
+import type{ T{{data.pascalName}}Client } from '@/app/repository/proxy/{{data.name}}.proxy'
+{{/if}}
+import { serviceMap } from '@/service'
+
+@Service(IoCLevelsEnum.DEV_2, serviceMap.{{data.pascalName}}Service.key)
+class {{data.pascalName}}Service implements I{{data.pascalName}}Service {
+  public readonly id: string = `${serviceMap.{{data.pascalName}}Service.key}`
+  {{#if data.withRepo}}
+  @Inject() {{data.pascalName}}Repository!: I{{data.pascalName}}Repository<T{{data.pascalName}}Client>
+  {{/if}}
+  //todo: provide implementation for your I{{data.pascalName}}Service interface
+
+}
+
+export default HistoricalPIService

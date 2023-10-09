@@ -1,0 +1,37 @@
+import { clientFactory, Pagination } from 'cubes-ui'
+ 
+
+const { baseURL, api } = window['configure']().network['shared']
+const config = { baseURL: `${baseURL}${api}` }
+
+//todo: import your clientDomainClasses here..
+//import {myClientDomainClass} from 'location..'
+
+//todo: define your clients here..
+/*
+const myClient = () =>
+  clientFactory(
+    true,
+    myClientDomainClass,
+    config,
+    {
+      post: { verb: 'post', template: '/controller/Create/' },
+      put: { verb: 'put', template: '/controller/Update/' },
+      delete: { verb: 'delete', template: '/controller/Delete/' },
+      list: { verb: 'get', template: '/controller/List/' }
+    },
+    undefined,
+    { dataResolver: (json: any) => json.records ?? json, paginationResolver: (_headers, json) => new Pagination({ totalCount: json.totalCount }) },
+    false
+  )
+  
+*/
+  
+
+const clientMap = { myClient }
+type T{{data.pascalName}}Client = typeof clientMap
+
+export { 
+  //myClient
+ }
+export type { T{{data.pascalName}}Client }
