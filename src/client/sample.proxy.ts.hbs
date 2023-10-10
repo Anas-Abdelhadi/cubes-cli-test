@@ -15,10 +15,10 @@ const myClient = () =>
     myClientDomainClass,
     config,
     {
-      post: { verb: 'post', template: '/controller/Create/' },
-      put: { verb: 'put', template: '/controller/Update/' },
-      delete: { verb: 'delete', template: '/controller/Delete/' },
-      list: { verb: 'get', template: '/controller/List/' }
+      post: { verb: 'post', template: '/controller/Create/'},
+      put: { verb: 'put', template: '/controller/Update/'},
+      delete: { verb: 'delete', template: '/controller/Delete/'},
+      list: { verb: 'get', template: '/controller/List/'}
     },
     undefined,
     { dataResolver: (json: any) => json.records ?? json, paginationResolver: (_headers, json) => new Pagination({ totalCount: json.totalCount }) },
