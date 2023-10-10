@@ -1,7 +1,8 @@
 import { Inject, Service } from 'cubes'
 import { IoCLevelsEnum } from '@/{{data.name}}'
+import type {I{{data.pascalName}}Service} from '../meta/i-{{data.name}}-service'
 {{#if data.withRepo}}
-import type{ I{{data.pascalName}}Repository } from '@/app/repository/{{data.name}}/meta/index.ts'
+import type{ I{{data.pascalName}}Repository } from '@/app/repository/{{data.name}}/meta/index'
 import type{ T{{data.pascalName}}Client } from '@/app/repository/proxy/{{data.name}}.proxy'
 {{/if}}
 import { serviceMap } from '@/service'
