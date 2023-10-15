@@ -14,12 +14,11 @@
   ],
   "plugins": [
     "@babel/transform-typescript",
-    "@babel/proposal-object-rest-spread",
     "@babel/plugin-transform-async-to-generator",
     ["@babel/plugin-proposal-decorators", { "legacy": true }],
     ["@babel/plugin-proposal-class-properties", { "loose": true }],
-    ["@babel/plugin-proposal-private-property-in-object", { "loose": true }],
-    ["@babel/plugin-proposal-private-methods", { "loose": true }],
+    ["@babel/plugin-transform-object-rest-spread", { "loose": true }],
+    ["@babel/plugin-transform-private-methods", { "loose": true }],
     "@babel/plugin-syntax-dynamic-import"
   ]
 }
