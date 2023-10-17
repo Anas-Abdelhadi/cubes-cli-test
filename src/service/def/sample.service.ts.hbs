@@ -1,5 +1,5 @@
-import { Inject, Service } from 'cubes'
-import { IoCLevelsEnum } from '@/{{data.name}}'
+import {  {{#if data.withRepo}}Inject,{{/if}} Service } from 'cubes'
+import { IoCLevelsEnum } from '@/control'
 import type {I{{data.pascalName}}Service} from '../meta/i-{{data.name}}-service'
 {{#if data.withRepo}}
 import type{ I{{data.pascalName}}Repository } from '@/app/repository/{{data.name}}/meta/index'
@@ -15,6 +15,11 @@ class {{data.pascalName}}Service implements I{{data.pascalName}}Service {
   {{/if}}
   //todo: provide implementation for your I{{data.pascalName}}Service interface
 
+
+
+  dispose(): void {
+      //todo: implement your service disposal here..
+  }
 }
 
 export default {{data.pascalName}}Service
